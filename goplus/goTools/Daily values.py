@@ -1,0 +1,102 @@
+#Last,  Last, Max,  Min,  Last, LastWatt , LastDay
+
+varsToIntegrate = '''
+Last: mdl.locTime.Y
+Last: mdl.locTime.DOY
+Last: mdl.locTime.H
+Sum: mdl.climate.microclim.RsDif
+Sum: mdl.climate.microclim.RsDir
+Sum: mdl.climate.microclim.RsUp
+Sum: mdl.climate.microclim.RthDw
+Sum: mdl.climate.microclim.RthUp
+Mean: mdl.climate.microclim.TaC
+Sum: mdl.climate.microclim.Rain
+Mean: mdl.climate.microclim.Rain
+Last: mdl.climate.microclim.Rain
+Mean: mdl.climate.microclim.d
+Mean: mdl.climate.microclim.u
+Mean: mdl.climate.microclim.CO2
+Sum: mdl.forest.LE
+Sum: mdl.forest.Rnet
+Sum: mdl.forest.H
+Last: mdl.forest.treeStand.Age
+Sum: mdl.forest.treeStand.LeafFall
+Min: mdl.forest.treeStand.canopy.WaterPotential
+Max: mdl.forest.treeStand.canopy.WaterPotential
+Sum: mdl.forest.treeStand.Rm
+Sum: mdl.forest.treeStand.Rg
+Sum: mdl.forest.treeStand.litterfallLeaf
+Sum: mdl.forest.treeStand.litterfallBr
+Sum: mdl.forest.treeStand.litterfallRoot
+Sum: mdl.forest.treeStand.Litterfall
+Mean: mdl.forest.treeStand.IStress
+Last: mdl.forest.treeStand.NbDeadTrees
+Last: mdl.forest.treeStand.density
+Last: mdl.forest.treeStand.DBHmean
+Last: mdl.forest.treeStand.HEIGHTmean
+Last: mdl.forest.treeStand.W
+Last: mdl.forest.treeStand.Wa
+Last: mdl.forest.treeStand.Wr
+Last: mdl.forest.treeStand.Wstem
+Last: mdl.forest.treeStand.WProducted
+Last: mdl.forest.treeStand.canopy.LAI
+Sum: mdl.forest.treeStand.canopy.Rnet
+Sum: mdl.forest.treeStand.canopy.Rnet_star
+Sum: mdl.forest.treeStand.canopy.LE
+Sum: mdl.forest.treeStand.canopy.LE_DrySurface
+Sum: mdl.forest.treeStand.canopy.LE_WetSurface
+Sum: mdl.forest.treeStand.canopy.H
+Sum: mdl.forest.treeStand.canopy.Transpiration
+Sum: mdl.forest.treeStand.canopy.Transpirationmax
+Sum: mdl.forest.treeStand.canopy.Evaporation
+Max: mdl.forest.treeStand.canopy.dTsTa
+Sum: mdl.forest.treeStand.canopy.Assimilation
+Sum: mdl.forest.treeStand.canopy.Respiration
+Sum: mdl.forest.treeStand.canopy.Dripping
+Sum: mdl.forest.underStorey.Rm
+Sum: mdl.forest.underStorey.Rg
+Sum: mdl.forest.underStorey.foliage.LitterFall
+Sum: mdl.forest.underStorey.roots.LitterFall
+Sum: mdl.forest.underStorey.perennial.LitterFall
+Max: mdl.forest.underStorey.canopy.LAI
+Sum: mdl.forest.underStorey.canopy.Rnet
+Sum: mdl.forest.underStorey.canopy.H
+Sum: mdl.forest.underStorey.canopy.Transpiration
+Sum: mdl.forest.underStorey.canopy.Evaporation
+Sum: mdl.forest.underStorey.canopy.Assimilation
+Sum: mdl.forest.underStorey.canopy.Respiration
+Sum: mdl.forest.underStorey.canopy.Dripping
+Last: mdl.forest.underStorey.foliage.W
+Last: mdl.forest.underStorey.perennial.W
+Last: mdl.forest.underStorey.roots.W
+Last: mdl.forest.underStorey.foliage.Cpool
+Last: mdl.forest.underStorey.perennial.Cpool
+Last: mdl.forest.underStorey.roots.Cpool
+Sum: mdl.forest.soil.surface.Rnet
+Sum: mdl.forest.soil.surface.H
+Sum: mdl.forest.soil.surface.ETR
+Mean: mdl.forest.soil.waterCycle.w_RootLayer
+Mean: mdl.forest.soil.waterCycle.MoistureDeficit
+Min: mdl.forest.soil.waterCycle.RootLayerWaterPotential
+Max: mdl.forest.soil.waterCycle.RootLayerWaterPotential
+Sum: mdl.forest.soil.carbonCycle.Ra
+Sum: mdl.forest.soil.carbonCycle.Rh
+Last: mdl.forest.soil.carbonCycle.HUM
+Last: mdl.forest.soil.carbonCycle.BIO
+Last: mdl.forest.soil.carbonCycle.DPM
+Last: mdl.forest.soil.carbonCycle.RPM
+Sum: mdl.forest.soil.waterCycle.Vidange
+Last: mdl.manager.harvest_Wstem
+Last: mdl.manager.harvest_Wcrown
+Last: mdl.manager.harvest_Wtaproot
+Last: mdl.manager.harvest_DBHmean
+Last: mdl.manager.harvest_DBHsd
+Last: mdl.manager.harvest_DBHquadratic
+Last: mdl.manager.harvest_HEIGHTmean
+Last: mdl.manager.harvest_HEIGHTsd
+'''
+
+
+unitsToIntegrate = '''
+Y
+'''

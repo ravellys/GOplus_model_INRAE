@@ -68,9 +68,9 @@ import csv
 import math
 from sys import path
 import os,sys
-basePath  = os.path.dirname(os.path.realpath(__file__))+"/.."
-sys.path.append(basePath+"/goplus/")
-sys.path.append(basePath+"/goplus/goModel")
+basePath  = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
+sys.path.append(os.path.join(basePath, "goplus"))
+sys.path.append(os.path.join(basePath, "goplus", "goModel"))
 from goBases import *
 from goModel.mdlModel import Model
 from goModel.ManagerElements import mdlMngt_Operations
@@ -153,7 +153,7 @@ def model(
     mdl.climate.Scenario=0 # index code in mdlClimate mmodule; # Code 0: historical record; code 1: 500ppm, code 2: SRES A2; code 3: RCP2.6; code 4: RCP4.5; code 5: 500ppm; code 6: RCP 6.5; code 7: 500.0ppm; code 8: RCP8.5; code 9: 500ppm
       
    # Set the site specific parameters from csv external file
-    paraSiteFilePath = basePath + '/Parameters files/Site/FR-Vielle.csv'
+    paraSiteFilePath = os.path.join(basePath, 'Parameters_files', 'Site', 'FR-Vielle.csv')
     fileParaSite = open(paraSiteFilePath,'r')
     line=next(fileParaSite)
     for line in fileParaSite :
@@ -165,7 +165,7 @@ def model(
     fileParaSite.close()  
     
    # Set the species parameters from csv external file:  Fsylvatica or Ppinaster or Pmensiezii or Quercus or any user file
-    paraSpeFilePath =basePath + '/Parameters files/Species/Ppinaster.csv' 
+    paraSpeFilePath = os.path.join(basePath, 'Parameters_files', 'Species', 'Ppinaster.csv') 
     fileParaSpe = open(paraSpeFilePath,'r')
     line=next(fileParaSpe)
     for line in fileParaSpe :
@@ -184,7 +184,7 @@ def model(
     _initial_trees_Density = INTERVENTIONS[yearLastIntervention][1]
     _installation =mdl.forest.treeStand.pcs_TreeStandInstallation
     mdl.forest.treeStand.RotationYear = _installation.initialTreesAge
-    _installation.initialTreesDimensionsFile = basePath + '/Parameters files/Tree stand/FR_Vielle_dbh_1990.csv' 
+    _installation.initialTreesDimensionsFile = basePath + '/Parameters_files/Tree_stand/FR_Vielle_dbh_1990.csv' 
 
     return mdl
 
@@ -234,7 +234,7 @@ if __name__ == '__main__':
 #the met file is taken from the MeteoFrance Safran gridded data set.
     mdl = model( 
         startYear = 1990,
-        meteoFile = basePath + '/Met files/Met_FR-Vielle_1990-2015.csv',
+        meteoFile = os.path.join(basePath, 'Met_files', 'Met_FR-Vielle_1990-2015.csv'),
         )
     endYear = 2015 #included
         
@@ -244,7 +244,7 @@ if __name__ == '__main__':
         simulate(
             mdl = mdl, 
             endYear = endYear, 
-            fileoutName = basePath + '/output files/FR-Vielle_1990-2015_d.csv', #  
+            fileoutName = os.path.join(basePath, 'Output_files', 'FR-Vielle_1990-2015_dtest.csv'),  
             outFrequency=1,         #0: hour, 1: day, 2: year
             log =True, 
             header= True, 

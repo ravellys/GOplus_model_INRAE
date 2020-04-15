@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Declaration of the output variables and related statistics. Possible ootions: mean, maximum, minimum, final, sum.
+# Declaration of the output variables and related statistics. Possible options: mean, maximum, minimum, final, sum.
 # The integration step, hour, day or year,  is specified at the end of the script  
 # Alternatively, instead of declaring output variables and associated statistics as done below L7 -L37, a test file can be used with the instruction:
 #from "filename" (ex: BRAY_varsToIntegrate) import varsToIntegrate
@@ -79,9 +79,9 @@ import csv
 import math
 from sys import path
 import os,sys
-basePath  = os.path.dirname(os.path.realpath(__file__)) + "/.."
-sys.path.append(basePath+"/goplus/")
-sys.path.append(basePath+"/goplus/goModel")
+basePath  = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
+sys.path.append(os.path.join(basePath, "goplus"))
+sys.path.append(os.path.join(basePath, "goplus", "goModel"))
 from goBases import *
 from goModel.mdlModel import Model
 from goModel.ManagerElements import mdlMngt_Operations
@@ -171,7 +171,7 @@ def model(
     mdl.climate.Scenario=0 
     
    # Set the site specific parameters from csv external file
-    paraSiteFilePath =basePath +'/Parameters files/Site/DK-Sor.csv'
+    paraSiteFilePath =os.path.join(basePath, 'Parameters_files', 'Site', 'DK-Sor.csv')
     fileParaSite = open(paraSiteFilePath,'r')
     line=next(fileParaSite)
     for line in fileParaSite :
@@ -182,7 +182,7 @@ def model(
     fileParaSite.close()  
     
    # Set the species parameters from csv external file:  Fsylvatica 
-    paraSpeFilePath =basePath +'/Parameters files/Species/Fsylvatica.csv' 
+    paraSpeFilePath =os.path.join(basePath, 'Parameters_files', 'Species', 'Fsylvatica.csv') 
     fileParaSpe = open(paraSpeFilePath,'r')
     line=next(fileParaSpe)
     for line in fileParaSpe :
@@ -199,7 +199,7 @@ def model(
     _initial_trees_Density = INTERVENTIONS[yearLastIntervention][1]
     _installation =mdl.forest.treeStand.pcs_TreeStandInstallation
     mdl.forest.treeStand.RotationYear = _installation.initialTreesAge
-    _installation.initialTreesDimensionsFile =basePath +'/Parameters files/Tree stand/DK-Sor_dbh_1998.csv' 
+    _installation.initialTreesDimensionsFile =os.path.join(basePath, 'Parameters_files', 'Tree_stand', 'DK-Sor_dbh_1998.csv') 
 
     return mdl
 
@@ -250,7 +250,7 @@ if __name__ == '__main__':
 #instantiate the model 
     mdl = model( 
         startYear = 1998,
-        meteoFile = basePath + '/Met files/Met_DK-Sor_1998-2013.csv',
+        meteoFile = os.path.join(basePath, 'Met_files', 'Met_DK-Sor_1998-2013.csv'),
         )
     endYear = 2012 #included
         
@@ -260,7 +260,7 @@ if __name__ == '__main__':
         simulate(
             mdl = mdl, 
             endYear = endYear, 
-            fileoutName =basePath + '/output files/DK-Sor_1998-2013_d.csv', #  
+            fileoutName =os.path.join(basePath, 'Output_files', 'DK-Sor_1998-2013_dtest.csv'), #  
             outFrequency=1,         #0: hour, 1: day, 2: year
             log =True, 
             header= True, 

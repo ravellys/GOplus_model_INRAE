@@ -1,6 +1,7 @@
 from goBases import * 		# Windows
 # from ...goBases import *	# Linux 
-
+import os,sys
+basePath  = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
 
 class LeavesCohort(ELT):
 
@@ -31,8 +32,8 @@ class LeavesCohort(ELT):
         _CohortWeightMax   = private('CohortWeightMax by tree and soil area ', ELT),
         ):
         
-#   ########################################################        
-#       # create a new cohort
+#==============================================================================
+#New cohort
         if self.DateOfBB== -9999:
             
       #Each cohort has a fixed biomass value 
@@ -62,12 +63,12 @@ class LeavesCohort(ELT):
             self.Weight    = 0.0
             self.FoliageArea = 0.0001
             self.LAI       = 0.00001
-###############################################################
-# Leaf cohorts lifecycle                    
+#==============================================================================
+# Cohort lifecycle                    
         else :
             
     #Pinus and Douglas fir        
-            #correction of the cohort leafweight when trees are logged; applied for evergreen species only.
+            #correction of the cohort leafweight when thetree stand is thinned (evergreen species only)
             if self.treeStand.Species=='Ppinaster' or self.treeStand.Species == 'DouglasFir':
                 if self.treeStand.Tree_Log == 1  and self.locTime.DOY == 1 :
                     self.cohortWeightMaxOfSoil  *= 1 / (1 + self.treeStand.Foliage_Fraction_Removed)
@@ -96,9 +97,9 @@ class LeavesCohort(ELT):
     
     #Fagus
             elif self.treeStand.Species=='Fsylvatica':       
-                #increment the amount of SW received since bud burst date and zero this amount after DOY 258. Used for Fagus only.               
+                #increment the amount of SW received since bud burst date and zero this amount after DOY 258.        
                 self.SumSW += self.treeStand.MeanSWDir+self.treeStand.MeanSWDir
-                # life duration as afunction of accumulated SW radiation from budbburst until DOY 258 (Picart Deshors, unpublished)
+                # life duration as a function of accumulated SW radiation (Picart Deshors, unpublished)
                 if self.locTime.DOY==258:
                     self._GSL= self.treeStand.k_GSL1*self.SumSW + self.treeStand.k_GSL2
                     self.DateOfS= self._GSL+self.DOYOfBB
@@ -129,18 +130,19 @@ class LeavesCohort(ELT):
             self.LAI       = 0.00001
             self.LeafFall  = 0.        
 
-#________________________________________________________________________________                
+#==============================================================================                
         #update cohort leaf  biomass and area
         self.LeafFall       = max(0., self.Weight -self.Retained * self.Expansion *  self.cohortWeightMaxOfSoil)       
         self.Weight         = self.Retained * self.Expansion * self.cohortWeightMaxOfSoil
         self.FoliageArea    = self.treeStand.SLA * self.Weight
         self.LAI            = self.FoliageArea * self.treeStand.LAI_LeafArea_ratio
         
-        #To check cohort life cycles. Create a csv file with each cohort life cycle.
+        #To check cohort life cycles. Create a csv file including each cohort
 #        z = str(self.locTime.Y) + str(",") +str(self.locTime.DOY) + str(",") + str(self.FoliageArea ) + str(",") + str(self.LAI) +  str(",") + str(self.DOYOfBB) + str(",") + str(self.DateOfBB) \
 #        + str(",") + str(self.cohortWeightMaxOfSoil) + str(",") + str (self.Retained) + str(",") + str(self.SumSW)+ str(",") + str (self.treeStand.Sfor)  + str(",") + str (self.treeStand.Sch) + str(",") + str (self.treeStand.Tree_Log)  + str(",") + str (self.treeStand.Foliage_Fraction_Removed)
-#        with open('../output files/cohort_SITE.csv', 'a') as c :
+#        paraCohortFilePath = os.path.join(basePath, '..', '..', 'Output_files', 'Foliage_Cohorts.csv')
+#        with open(paraCohortFilePath,'a') as c:
 #            c.write('%s\n' % z)
 #        c.closed
 
-#________________________________________________________________________________
+#==============================================================================

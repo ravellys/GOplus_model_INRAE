@@ -55,9 +55,9 @@ import csv
 import math
 from sys import path
 import os,sys
-basePath  = os.path.dirname(os.path.realpath(__file__))+"/.."
-sys.path.append(basePath+"/goplus/")
-sys.path.append(basePath+"/goplus/goModel")
+basePath  = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
+sys.path.append(os.path.join(basePath, "goplus"))
+sys.path.append(os.path.join(basePath, "goplus", "goModel"))
 from goBases import *
 from goModel.mdlModel import Model
 from goModel.ManagerElements import mdlMngt_Operations
@@ -120,7 +120,7 @@ def model(
     mdl.climate.Scenario=0 # index code in mdlClimate mmodule
       
    # Set the site specific parameters from csv external file
-    paraSiteFilePath = basePath + '/Parameters files/Site/BC-DF49.csv'
+    paraSiteFilePath = os.path.join(basePath, 'Parameters_files', 'Site', 'BC-DF49.csv')
     fileParaSite = open(paraSiteFilePath,'r')
     line=next(fileParaSite)
     for line in fileParaSite :
@@ -132,7 +132,7 @@ def model(
     fileParaSite.close()  
     
    # Set the species parameters from csv external file
-    paraSpeFilePath =basePath + '/Parameters files/Species/DouglasFir.csv' 
+    paraSpeFilePath =os.path.join(basePath, 'Parameters_files', 'Species', 'DouglasFir.csv' )
     fileParaSpe = open(paraSpeFilePath,'r')
     line=next(fileParaSpe)
     for line in fileParaSpe :
@@ -200,7 +200,7 @@ if __name__ == '__main__':
 
     mdl = model( 
         startYear = 1998,
-        meteoFile = basePath + '/Met files/Met_BC-DF49_1998-2010.csv'
+        meteoFile = os.path.join(basePath, 'Met_files', 'Met_BC-DF49_1998-2010.csv')
         )
     endYear = 2010 
         
@@ -210,7 +210,7 @@ if __name__ == '__main__':
         simulate(
             mdl = mdl, 
             endYear = endYear, 
-            fileoutName =basePath + '/output files/BC-DF49_1998-2010_h.csv',
+            fileoutName =os.path.join(basePath, 'Output_files', 'BC-DF49_1998-2010_htest.csv'),
             outFrequency=0,         #0: hour, 1: day, 2: year
             log =True, 
             header= True, 

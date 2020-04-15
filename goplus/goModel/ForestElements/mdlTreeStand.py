@@ -1,4 +1,5 @@
 from __future__ import division
+import os,sys
 import numpy as np
 from goBases import * 		#Windows
 #from ...goBases import * 	#LINUX
@@ -8,8 +9,8 @@ from ForestElements.mdlLeavesCohort import LeavesCohort
 from ForestElements.Canopy.mdlCanopy import SunShadeCanopy as Canopy
 from ForestElements.SoilElements.mdlSoilCarbonCycle import SoilCarbonCycle
 #from ManagerElements.mdlManager import Manager
-
 import  random, math
+basePath  = os.path.join(os.path.dirname(os.path.realpath(__file__)), "..")
 
 class TreeStand(Trees):
     '''represent the tree stand and its main biophysical and biogeochemical processes: phenology, carbon allocation, growth, respiration, hydraulics, 
@@ -607,12 +608,13 @@ class TreeStand(Trees):
                     self.soil.carbonCycle.incorporateACarbonLitter((_tree.WTapRoot/self.Area) * self.BiomassCarbonContent, self.Root_DPM_RPM,  self.Root_Age)
                     self.soil.carbonCycle.incorporateACarbonLitter(((_tree.WSmallRoot + _tree.WCoarseRoot )/self.Area) * self.BiomassCarbonContent, self.Root_DPM_RPM, self.Root_Age)
                     self.soil.carbonCycle.incorporateACarbonLitter((_tree.WFineRoot/self.Area) * self.BiomassCarbonContent, self.Root_DPM_RPM,  self.Root_Age)              
-                     # optional: outpout a file of dead trees  
+                     # optional: output a file of dead trees  
 #                    x=str(self.locTime.Y) + str(",") +str(_tree.DBH) + str(",") + str(_tree.WaProducted) + str(",") + str(_tree.WrProducted) + str(",") + str(_tree.W) \
 #                        + str(",")  +  str(_tree.LeafWeight) + str(",") + str(_tree.N) + str(",")  \
 #                        + str(tree_Wproducted)  + str(",") + str (tree_Annual_Assimilation)   + str(",") + str(tree_Annual_Rm)\
 #                        + str(",") + str(tree_Annual_Rg)
-#                    with open('../output files/deadtrees.csv', 'a') as f:
+#                    paraDeadTreeFilePath = os.path.join(basePath, '..', '..', 'Output_files', 'DeadTrees.csv')
+#                    with open(paraDeadTreeFilePath, 'a') as f:
 #                        f.write('%s\n' % x)
 #                    f.closed
               
@@ -626,12 +628,13 @@ class TreeStand(Trees):
                
             ##Individual tree growth 
                 _tree.update()
-                #optional: outpout a file of live trees 
+#                #optional: output a file of live trees 
 #                r = str(self.locTime.Y) + str(",") +str(_tree.DBH) +  str(",") + str(_tree.Wa) +  str(",") + str(_tree.WBranch) \
 #                + str(",")  +  str(_tree.WCoarseRoot) + str(",") + str(_tree.WStem)   + str(",") +  str(_tree.LeafWeight) + str(",") + \
 #                str(tree_Wproducted)  + str(",") + str (tree_Annual_Assimilation)   + str(",") + str(tree_Annual_Rm)\
 #                 + str(",") + str(tree_Annual_Rg)
-#                with open('../output files/Totaltrees.csv', 'a') as e:
+#                paraTreeFilePath = os.path.join(basePath, '..', '..', 'Output_files', 'LiveTrees.csv')
+#                with open(paraTreeFilePath,'a') as e:
 #                    e.write('%s\n' % r)
 #                e.closed
 
@@ -763,7 +766,6 @@ class TreeStand(Trees):
         _trees_dim = []
         for i in range(_nbTrees):
             _tree_DBH    = max(random.gauss(trees_DBH_mean, trees_DBH_std), 0.1*trees_DBH_mean)
-            print(_tree_DBH)
             _trees_dim   += [(float(_tree_DBH))]
         self._include_trees(trees_Age,_trees_dim)
         
@@ -861,24 +863,10 @@ class TreeStand(Trees):
                     _cohort.DateOfBB = 136 - int((_c+1)*365.25) 
                 else:
                     _cohort.DateOfBB = self.locTime.Now + (136 - int((_c+1)*365.25))
-                print(_c,_cohort.DateOfBB, _cohort.cohortWeightMaxOfSoil, self.Area, nbcohort, trees_Age)
                 self.cohorts.append(_cohort) 
 
 
     def _exclude_tree(self, tree_to_remove):
         self.remove(tree_to_remove)
         self.pcs_SetSizes() 
-# =============================================================================
-# 
-# if False:
-#     treeStand = TreeStand()
-#     treeStand.initialisation()
-#     treeStand.year_initialisation()
-#     treeStand.year_update()
-#     treeStand.day_initialisation()
-#     treeStand.day_update()
-#     treeStand.hour_initialisation()
-#     treeStand.hour_IterativeEstimate()
-#     treeStand.hour_update()
-#     treeStand._exclude_tree(Tree())
-# =============================================================================
+

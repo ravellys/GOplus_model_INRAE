@@ -1,4 +1,4 @@
-'Name',							'Value',	'Définition',
+'Name',							'Value',	'Definition',
 '.locTime.leapYear',					0,	'0: all year have 365 days; 1:allows leap years',
 '.sunLocal.Latitude ',					44.08096,'latitude of the site (deg)',
 '.sunLocal.Altitude ',					60,'altitude of the site (m)',

@@ -1,4 +1,4 @@
-'Name',							'Value',	'Définition',
+'Name',							'Value',	'Definition',
 '.sunLocal.Latitude ',					48.675,'latitude of the site (deg)',
 '.sunLocal.Altitude ',					900,    'altitude of the site (m)',
 '.sunLocal.Slope ', 					0.5206,      'slope of the stand (deg)',

@@ -193,6 +193,7 @@ def simulate(
                       'Thinnings', str(mdl.manager.thinnings)
                       )
 
+                
 if __name__ == '__main__':
     from time import  time
 
@@ -202,18 +203,21 @@ if __name__ == '__main__':
         startYear = 1998,
         meteoFile = os.path.join(basePath, 'Met_files', 'Met_BC-DF49_1998-2010.csv')
         )
+    
     endYear = 2010 
-        
+    fileoutName =os.path.join(basePath, 'Output_files', 'BC-DF49_1998-2010_htest.csv')
+    
     #Do simulation
     if endYear>1998:
         tstart =time()
         simulate(
-            mdl = mdl, 
-            endYear = endYear, 
-            fileoutName =os.path.join(basePath, 'Output_files', 'BC-DF49_1998-2010_htest.csv'),
-            outFrequency=0,         #0: hour, 1: day, 2: year
-            log =True, 
-            header= True, 
-            fileOutAppend = False, 
+            mdl             = mdl, 
+            endYear         = endYear, 
+            fileoutName     = fileoutName,
+            outFrequency    = 0,         #0: hour, 1: day, 2: year
+            log             = True, 
+            header          = True, 
+            fileOutAppend   = False, 
             )
         tend =time()
+        print("\n Completed \n Output file is:", fileoutName, "\n simulate in %s mn." % str((tend-tstart)/60.))     

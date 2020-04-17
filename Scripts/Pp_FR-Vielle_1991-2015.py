@@ -237,17 +237,19 @@ if __name__ == '__main__':
         meteoFile = os.path.join(basePath, 'Met_files', 'Met_FR-Vielle_1990-2015.csv'),
         )
     endYear = 2015 #included
-        
+    fileoutName = os.path.join(basePath, 'Output_files', 'FR-Vielle_1990-2015_dtest.csv')
+                               
     #Do simulation
     if endYear>1990:
         tstart =time()
         simulate(
-            mdl = mdl, 
-            endYear = endYear, 
-            fileoutName = os.path.join(basePath, 'Output_files', 'FR-Vielle_1990-2015_dtest.csv'),  
-            outFrequency=1,         #0: hour, 1: day, 2: year
-            log =True, 
-            header= True, 
-            fileOutAppend = False, 
+            mdl             = mdl, 
+            endYear         = endYear, 
+            fileoutName     = fileoutName,
+            outFrequency    = 1,         #0: hour, 1: day, 2: year
+            log             = True, 
+            header          = True, 
+            fileOutAppend   = False, 
             )
         tend =time()
+        print("\n Completed \n Output file is:", fileoutName, "\n simulate in %s mn." % str((tend-tstart)/60.))  

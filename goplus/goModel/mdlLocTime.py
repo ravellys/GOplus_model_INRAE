@@ -21,8 +21,8 @@ class LocTime(ELT):
     isYearEnd =var('True at the start of year')
 
     #params
-    #○Y_start = param('initial year',  1980)
-    leapYear = param('0: if only 365 days/year, 1: if allow leap year')
+
+    leapYear = param('0 if 365 days per year, 1 if leap years allowed')
 
     def update(self):
         '''update the time states

@@ -100,9 +100,9 @@ model :
 Other examples are as follows. All files but the scripts are in csv
 format.
 
-  | Script (.py)             | Site parameters |  Species      |   Meteorological data      | Initial Tree Stand DBH | Output file            |
-  |:-------------------------|:----------------|:--------------|:----------------- ---------|:-----------------------|:-----------------------|
-  | Fs\_DK-Sor\_1998-2012    | DK-Sor          |  Fsylvatica   |   Met\_DK-Sor\_1998-2013   | DK-Sor\_dbh\_1998      | DK-Sor\_1998-2012\_d   |
-  | Pp\_FR-LBr\_1987-2010    | FR-LBr          |  Ppinaster    |   Met\_FR-LBr\_1984-2011   | FR-LBr\_dbh\_1986      | FR-LBr\_1987-2011\_d   |
-  | Fs\_FR-Hes\_1998-2010    | FR-Hes          |  Fsylvatica   |   Met\_FR-Hes\_1998-2010   | FR-Hes\_dbh\_1998      | FR-Hes\_1998-2010\_d   |
-  | DF\_BC49\_1998-2010	     | BC-DF49         |  Douglas Fir  |   Met\_BC-DF49\_1998-2010  | generated              | BC\_DF49\_1998-2010\_d |
+| Script (.py)             | Site parameters |  Species      |   Meteorological data      | Initial Tree Stand DBH | Output file|
+|:-------------------------|:----------------|:--------------|:---------------------------|:-----------------------|:-----------|
+| Fs\_DK-Sor\_1998-2012    | DK-Sor          |  Fsylvatica   |   Met\_DK-Sor\_1998-2013   | DK-Sor\_dbh\_1998      | DK-Sor\_1998-2012\_d |
+  | Pp\_FR-LBr\_1987-2010    | FR-LBr          |  Ppinaster    |   Met\_FR-LBr\_1984-2011   | FR-LBr\_dbh\_1986      | FR-LBr\_1987-2011\_d |
+| Fs\_FR-Hes\_1998-2010    | FR-Hes          |  Fsylvatica   |   Met\_FR-Hes\_1998-2010   | FR-Hes\_dbh\_1998      | FR-Hes\_1998-2010\_d |
+| DF\_BC49\_1998-2010	     | BC-DF49         |  Douglas Fir  |   Met\_BC-DF49\_1998-2010  | generated              | BC\_DF49\_1998-2010\_d |

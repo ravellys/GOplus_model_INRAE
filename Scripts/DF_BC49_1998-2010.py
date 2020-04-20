@@ -8,16 +8,27 @@ varsToIntegrate = '''
 Last: mdl.locTime.Y
 Last: mdl.locTime.DOY
 Last: mdl.locTime.H
-Sum:  mdl.climate.microclim.Rain
-Mean: mdl.climate.microclim.u
+Sum: mdl.climate.microclim.Rain
+Mean:mdl.climate.microclim.u
 Mean: mdl.climate.microclim.TaC
 Mean: mdl.climate.microclim.d
 Mean: mdl.climate.microclim.SWDir
 Mean: mdl.climate.microclim.SWDif
 Mean: mdl.climate.microclim.LWDw
-Max: mdl.forest.treeStand.canopy.LAI
-Max: mdl.forest.treeStand.canopy.WAI
-Mean: mdl.forest.soil.waterCycle.Stock_RootLayer
+Last: mdl.forest.treeStand.canopy.LAI
+Last: mdl.forest.treeStand.canopy.WAI
+Last: mdl.forest.underStorey.canopy.LAI
+Last: mdl.forest.underStorey.canopy.WAI
+Last: mdl.forest.treeStand.HEIGHTmean
+Last: mdl.forest.treeStand.canopy.WaterPotential
+Last: mdl.forest.soil.waterCycle.RootLayerWaterPotential
+Last: mdl.forest.soil.waterCycle.Stock_RootLayer
+Last: mdl.forest.soil.waterCycle.Stock_AB
+Last: mdl.forest.treeStand.IStress
+Last: mdl.forest.soil.waterCycle.discharge
+Last: mdl.forest.soil.waterCycle.Dp_B
+Last: mdl.forest.soil.waterCycle.Dp_C
+Last: mdl.forest.soil.waterCycle.w_A
 Mean: mdl.forest.LE
 Mean: mdl.forest.Rnet
 Mean: mdl.forest.H
@@ -26,24 +37,48 @@ Sum: mdl.forest.NEE
 Sum: mdl.forest.RAuto
 Sum: mdl.forest.soil.carbonCycle.Rh
 Sum: mdl.forest.treeStand.canopy.Assimilation
-Sum: mdl.forest.treeStand.canopy.Respiration
-Sum: mdl.forest.treeStand.canopy.Transpiration
+Sum: mdl.forest.treeStand.Rm
+Last: mdl.forest.treeStand.Annual_Rg
+Sum : mdl.forest.treeStand.canopy.Transpiration
 Sum: mdl.forest.treeStand.canopy.Evaporation
-Sum: mdl.forest.soil.surface.ETR
-Last: mdl.forest.treeStand.Age    
+Mean: mdl.forest.treeStand.canopy.Rnet
+Mean: mdl.forest.treeStand.canopy.dTsTa
+Mean: mdl.forest.treeStand.canopy.DrySurfaceFraction
+Mean: mdl.forest.treeStand.canopy.LE_DrySurface
+Mean: mdl.forest.treeStand.canopy.LE_WetSurface
+Mean: mdl.forest.treeStand.canopy.H
+Sum: mdl.forest.underStorey.canopy.ETR
+Sum: mdl.forest.underStorey.canopy.Assimilation
+Sum: mdl.forest.underStorey.canopy.Respiration
+Sum: mdl.forest.underStorey.canopy.Transpiration
+Sum: mdl.forest.underStorey.canopy.Evaporation
+Sum: mdl.forest.soil.surface.ETR_DrySurface
+Sum: mdl.forest.soil.surface.ETR_WetSurface
 Last: mdl.forest.treeStand.density
-Last: mdl.forest.treeStand.IStress   
+Last: mdl.forest.treeStand.Age    
 Last: mdl.forest.treeStand.DBHmean 
 Last: mdl.forest.treeStand.HEIGHTmean
 Last: mdl.forest.treeStand.BasalArea
 Last: mdl.forest.treeStand.WDeadTrees
-Last: mdl.forest.treeStand.LeafFall
+Sum: mdl.forest.treeStand.LitterfallLeaf
+Sum: mdl.forest.treeStand.LitterfallBr
+Sum: mdl.forest.treeStand.LitterfallRoot
+Sum: mdl.forest.treeStand.Litterfall
 Last: mdl.forest.treeStand.Wr
 Last: mdl.forest.treeStand.WStem
-Last: mdl.forest.treeStand.WBranch 
+Last: mdl.forest.treeStand.WBranch
+Last: mdl.forest.treeStand.WTapRoot
+Last: mdl.forest.treeStand.WCoarseRoot
+Last: mdl.forest.treeStand.WSmallRoot
+Last: mdl.forest.treeStand.WFineRoot
+Last: mdl.manager.harvest_WStem
+Last: mdl.manager.harvest_WBranch
 Last: mdl.forest.underStorey.foliage.W
 Last: mdl.forest.underStorey.perennial.W
 Last: mdl.forest.underStorey.roots.W
+Last: mdl.forest.underStorey.foliage.LitterFall
+Last: mdl.forest.underStorey.perennial.LitterFall
+Last: mdl.forest.underStorey.roots.LitterFall
 Last: mdl.forest.soil.carbonCycle.HUM
 Last: mdl.forest.soil.carbonCycle.BIO
 Last: mdl.forest.soil.carbonCycle.DPM
@@ -205,7 +240,7 @@ if __name__ == '__main__':
         )
     
     endYear = 2010 
-    fileoutName =os.path.join(basePath, 'Output_files', 'BC-DF49_1998-2010_htest.csv')
+    fileoutName =os.path.join(basePath, 'Output_files', 'BC-DF49_1998-2010_d.csv')
     
     #Do simulation
     if endYear>1998:
@@ -214,7 +249,7 @@ if __name__ == '__main__':
             mdl             = mdl, 
             endYear         = endYear, 
             fileoutName     = fileoutName,
-            outFrequency    = 0,         #0: hour, 1: day, 2: year
+            outFrequency    = 1,         #0: hour, 1: day, 2: year
             log             = True, 
             header          = True, 
             fileOutAppend   = False, 

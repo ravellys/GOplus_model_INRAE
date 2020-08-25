@@ -232,7 +232,7 @@ def simulate(
 if __name__ == '__main__':
     from time import  time
 
-#instantiate the model   
+    #instantiate the model
 
     mdl = model( 
         startYear = 1998,
@@ -244,15 +244,15 @@ if __name__ == '__main__':
     
     #Do simulation
     if endYear>1998:
-        tstart =time()
+        tstart = time()
         simulate(
-            mdl             = mdl, 
-            endYear         = endYear, 
-            fileoutName     = fileoutName,
-            outFrequency    = 1,         #0: hour, 1: day, 2: year
-            log             = True, 
-            header          = True, 
-            fileOutAppend   = False, 
+            mdl             =mdl,
+            endYear         =endYear,
+            fileoutName     =fileoutName,
+            outFrequency    =1,         #0: hour, 1: day, 2: year
+            log             =True,
+            header          =True,
+            fileOutAppend   =False,
             )
-        tend =time()
+        tend = time()
         print("\n Completed \n Output file is:", fileoutName, "\n simulate in %s mn." % str((tend-tstart)/60.))     

@@ -178,7 +178,7 @@ def simulate(
 #instantiate the model for a specific experiment. 
 
 if __name__ == '__main__':
-    from time import  time
+    from time import time
     mdl = model( 
         startYear = 2006,
         meteoFile = os.path.join(basePath,'Met_files', 'Met_FR-Mtr_RCP85_2006-2100.csv'),
@@ -198,5 +198,5 @@ if __name__ == '__main__':
             header          = True, 
             fileOutAppend   = False, 
             )
-        tend =time()
+        tend = time()
         print("\n Completed \n Output file is:", fileoutName, "\n simulate in %s mn." % str((tend-tstart)/60.))  

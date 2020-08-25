@@ -122,9 +122,9 @@ class Collelongo_Manager(mdlMngt_Operations.Manager):
             self.FirstThinning      = False
         
         for interventionYear, interventionParameters in INTERVENTIONS.items():
-            if  self.locTime.isYearEnd and self.locTime.Y == interventionYear  : 
+            if self.locTime.isYearEnd and self.locTime.Y == interventionYear  :
                     
-                if  interventionParameters[0] == 'THINNING' :
+                if interventionParameters[0] == 'THINNING':
                     self.do_Density_Thinning(
                             ThinFactor=interventionParameters[2], 
                             densityObjective = interventionParameters[1], 
